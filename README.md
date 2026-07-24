@@ -35,14 +35,14 @@ A demand-planning / commercial analytics team at an FMCG company needs to answer
 - Planning: Can we forecast weekly demand accurately enough to reduce both stock-outs and overstock?
 
 **3. Dataset**
-Source >> Kaggle — https://www.kaggle.com/code/devsurakshitkapoor/fmcg-eda-business-insights
-Grain >> One row per date × SKU × channel × region × pack_type
-Rows >> 190,757
-Columns >> 14
-Date range (YYYY-MM-DD) >> From 2022-01-21 to 2024-12-31
-Channels >> Retail, Discount, E-commerce
-Regions >> PL-Central, PL-North, PL-South (PL = Poland)
-Pack types >> Single, Multipack, Carton
+- Source >> Kaggle — https://www.kaggle.com/code/devsurakshitkapoor/fmcg-eda-business-insights
+- Grain >> One row per date × SKU × channel × region × pack_type
+- Rows >> 190,757
+- Columns >> 14
+- Date range (YYYY-MM-DD) >> From 2022-01-21 to 2024-12-31
+- Channels >> Retail, Discount, E-commerce
+- Regions >> PL-Central, PL-North, PL-South (PL = Poland)
+- Pack types >> Single, Multipack, Carton
 
 **4. Data Quality Findings**
 
