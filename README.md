@@ -64,16 +64,18 @@ Three anomalies flagged `docs/data_quality_findings.md`:
 **5. Analysis**
 Full analysis in `sql/03_analysis_queries.sql`
 
-Trend >> Weekly & YoY volume >> `reports/figures/01_weekly_volume.png`
-Seasonality >> Month-of-year & day-of-week >> `reports/figures/02_seasonality.png`
-Product hierarchy >> Category share, top brands, SKU Pareto >> `reports/figures/03_hierarchy.png`
-Channel & region >> Volume mix >> `reports/figures/04_channel_region.png`
-Promotion >> Uplift on volume, by category >> `reports/figures/05_promo_uplift.png`
-Stock-out >> Rate by dimension & over time >> `reports/figures/06_stockout_trend.png`
-Forecasting >> Weekly per-SKU, 12-week horizon >> `reports/figures/07_forecast_top_skus.png`
+- Trend >> Weekly & YoY volume >> `reports/figures/01_weekly_volume.png`
+- Seasonality >> Month-of-year & day-of-week >> `reports/figures/02_seasonality.png`
+- Product hierarchy >> Category share, top brands, SKU Pareto >> `reports/figures/03_hierarchy.png`
+- Channel & region >> Volume mix >> `reports/figures/04_channel_region.png`
+- Promotion >> Uplift on volume, by category >> `reports/figures/05_promo_uplift.png`
+- Stock-out >> Rate by dimension & over time >> `reports/figures/06_stockout_trend.png`
+- Forecasting >> Weekly per-SKU, 12-week horizon >> `reports/figures/07_forecast_top_skus.png`
 
-**Forecasting** "notebooks/04_forecasting.ipynb":
-weekly `units_sold` per SKU (30 models), **seasonal-naive baseline vs Prophet** (yearly seasonality + promotion regressor), evaluated on a **12-week hold-out** (MAE + WAPE).
+**Forecasting** 
+Link at "notebooks/04_forecasting.ipynb"
+
+Weekly `units_sold` per SKU (30 models), **seasonal-naive baseline vs Prophet** (yearly seasonality + promotion regressor), evaluated on a **12-week hold-out** (MAE + WAPE).
 
 **Result — the simple baseline wins.** Average WAPE was **13.1% (baseline)** vs **16.2% (Prophet)**, and the baseline was more accurate on **18 of 30 SKUs**. With strong, stable yearly seasonality and little trend, "same week last year" is hard to beat; the added model complexity did not pay off. **The seasonal-naive baseline is therefore selected for the production forecast** — a reminder that model choice should be evidence-driven. The 12-week forward forecast per SKU is in `data/processed/weekly_forecast_next12w.csv`.
 
@@ -115,6 +117,7 @@ Screenshots: `dashboard_screenshots/`
 - Add a promotion-scenario toggle to the forecast (simulate planned promo weeks via the regressor).
 
 11. Repository Structure
+```
 fmcg-sales-analytics/
 ├── README.md
 ├── .gitignore
@@ -137,6 +140,7 @@ fmcg-sales-analytics/
 └── docs/
     ├── data_dictionary.md
     └── data_quality_findings.md
+```
 
 #-----#-----#------#------#-----#-----#-----#
 
@@ -249,6 +253,7 @@ Tài liệu hướng dẫn xây dựng: `powerbi/data_model.md`, `powerbi/power_
 - Bổ sung chức năng mô phỏng kịch bản khuyến mãi trong mô hình dự báo, cho phép người dùng lựa chọn các tuần dự kiến triển khai khuyến mãi thông qua biến giải thích.
 
 **11. Cấu trúc Repository**
+```
 fmcg-sales-analytics/
 ├── README.md
 ├── .gitignore
@@ -271,3 +276,4 @@ fmcg-sales-analytics/
 └── docs/
     ├── data_dictionary.md
     └── data_quality_findings.md
+```
