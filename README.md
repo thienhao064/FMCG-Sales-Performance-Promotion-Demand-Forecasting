@@ -125,7 +125,6 @@ fmcg-sales-analytics/
 │   ├── raw/
 │   └── processed/
 ├── sql/
-│   ├── 00_schema.sql
 │   ├── 01_data_quality_checks.sql
 │   ├── 02_analysis_queries.sql
 │   └── 03_star_schema.sql
@@ -261,7 +260,6 @@ fmcg-sales-analytics/
 │   ├── raw/
 │   └── processed/
 ├── sql/
-│   ├── 00_schema.sql
 │   ├── 01_data_quality_checks.sql
 │   ├── 02_analysis_queries.sql
 │   └── 03_star_schema.sql
