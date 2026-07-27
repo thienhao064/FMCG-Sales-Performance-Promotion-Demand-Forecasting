@@ -1,4 +1,4 @@
-Data Dictionary
+**Data Dictionary**
 - Grain: One row per `date × sku × channel × region × pack_type`
 - Rows: 190,757
 - Columns: 14
