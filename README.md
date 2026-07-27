@@ -80,12 +80,11 @@ Full analysis in `sql/03_analysis_queries.sql`
 - Region and channel are evenly balanced (each region ~1.26M units; the three channels are similar), so geography/channel add little differentiation in this dataset — a dedicated region-comparison view is not warranted.
 
 **7. Dashboard**
-A 3-page Power BI report built on a star schema (fact_sales + dim_date/product/channel/region + fact_forecast):
+A 3-page Power BI report built on a star schema (`fact_sales`, `dim_date`, `dim_product`, `dim_channel`, `dim_region`):
 - Executive Overview — KPI cards, weekly trend, monthly seasonality, region/channel balance.
 - Product & Promotion — category/brand contribution, SKU league table, Pareto, promo uplift.
 - Availability & Forecast — stock-out rate & heat-matrix.
 
-Build specs: `powerbi/data_model.md`, `powerbi/power_query_steps.md`, `powerbi/measures.dax`, `powerbi/dashboard_layout.md` 
 Screenshots: `dashboard_screenshots/`
 
 **8. Recommendations**
@@ -205,12 +204,11 @@ Toàn bộ phân tích được thực hiện trong file `sql/03_analysis_querie
 
 **7. Dashboard**
 
-Báo cáo Power BI gồm ba trang, được xây dựng dựa trên star schema (`fact_sales`, `dim_date`, `dim_product`, `dim_channel`, `dim_region`, `fact_forecast`):
+Báo cáo Power BI gồm ba trang, được xây dựng dựa trên star schema (`fact_sales`, `dim_date`, `dim_product`, `dim_channel`, `dim_region`):
 - Trang Tổng quan điều hành >> Thẻ KPI, xu hướng sản lượng theo tuần, tính mùa vụ theo tháng, cơ cấu sản lượng theo khu vực và kênh bán hàng
 - Trang Sản phẩm và khuyến mãi >> Mức đóng góp theo ngành hàng và thương hiệu, bảng xếp hạng SKU, phân tích Pareto, mức tăng sản lượng do khuyến mãi
 - Trang Khả năng cung ứng >> Tỷ lệ hết hàng, ma trận nhiệt phân tích hết hàng
 
-Tài liệu hướng dẫn xây dựng: `powerbi/data_model.md`, `powerbi/power_query_steps.md`, `powerbi/measures.dax`, `powerbi/dashboard_layout.md`
 Ảnh chụp dashboard được lưu tại: `dashboard_screenshots/`
 
 **8. Khuyến Nghị**
