@@ -23,7 +23,7 @@ English Version (Vietnameses below)
 
 - Tools:
   + SQL (Data quality + Analysis query)
-  + Python (Cleaning, EDA, forecasting)
+  + Python (Cleaning, EDA)
   + Power BI (Interactive dashboard)
   + PowerPoint (Executive storytelling)
 
@@ -70,14 +70,10 @@ Full analysis in `sql/03_analysis_queries.sql`
 - Channel & region >> Volume mix >> `reports/figures/04_channel_region.png`
 - Promotion >> Uplift on volume, by category >> `reports/figures/05_promo_uplift.png`
 - Stock-out >> Rate by dimension & over time >> `reports/figures/06_stockout_trend.png`
-- Forecasting >> Weekly per-SKU, 12-week horizon >> `reports/figures/07_forecast_top_skus.png`
+- Forecasting >> Weekly per-SKU, 12-week horizon >> TBU
 
 **Forecasting** 
-Link at "notebooks/04_forecasting.ipynb"
-
-Weekly `units_sold` per SKU (30 models), **seasonal-naive baseline vs Prophet** (yearly seasonality + promotion regressor), evaluated on a **12-week hold-out** (MAE + WAPE).
-
-**Result — the simple baseline wins.** Average WAPE was **13.1% (baseline)** vs **16.2% (Prophet)**, and the baseline was more accurate on **18 of 30 SKUs**. With strong, stable yearly seasonality and little trend, "same week last year" is hard to beat; the added model complexity did not pay off. **The seasonal-naive baseline is therefore selected for the production forecast** — a reminder that model choice should be evidence-driven. The 12-week forward forecast per SKU is in `data/processed/weekly_forecast_next12w.csv`.
+TBU
 
 **6. Key Insight**
 - Volume is flat year-on-year once the ramp is excluded. Total = 3.80M units. After SKUs were onboarded through 2022, weekly volume peaked at ~39k (mid-2023) and settled into a 30–35k band in 2024; 2024 vs 2023 = −0.9% (essentially flat). (The +165% "2023 vs 2022" is an artifact of a partial/ramp-up 2022 and is not treated as growth.)
@@ -91,7 +87,7 @@ Weekly `units_sold` per SKU (30 models), **seasonal-naive baseline vs Prophet** 
 A 3-page Power BI report built on a star schema (fact_sales + dim_date/product/channel/region + fact_forecast):
 - Executive Overview — KPI cards, weekly trend, monthly seasonality, region/channel balance.
 - Product & Promotion — category/brand contribution, SKU league table, Pareto, promo uplift.
-- Availability & Forecast — stock-out rate & heat-matrix, 12-week per-SKU forecast.
+- Availability & Forecast — stock-out rate & heat-matrix.
 
 Build specs: `powerbi/data_model.md`, `powerbi/power_query_steps.md`, `powerbi/measures.dax`, `powerbi/dashboard_layout.md` 
 Screenshots: `dashboard_screenshots/`
@@ -154,7 +150,7 @@ Phiên bản Tiếng Việt
 
 - Công cụ sử dụng:
   + SQL: Kiểm tra chất lượng dữ liệu và truy vấn để phân tích
-  + Python: Làm sạch dữ liệu, khám phá dữ liệu và dự báo
+  + Python: Làm sạch dữ liệu, khám phá dữ liệu
   + Power BI: Xây dựng dashboard tương tác
   + PowerPoint: Trình bày kết quả phân tích cho cấp quản lý
 
@@ -199,19 +195,10 @@ Toàn bộ phân tích được thực hiện trong file `sql/03_analysis_querie
 - Kênh bán hàng và khu vực >> Cơ cấu sản lượng >> `reports/figures/04_channel_region.png`
 - Khuyến mãi >> Mức tăng sản lượng do khuyến mãi theo từng ngành hàng >> `reports/figures/05_promo_uplift.png`
 - Hết hàng >> Tỷ lệ hết hàng theo từng chiều dữ liệu và theo thời gian >> `reports/figures/06_stockout_trend.png`
-- Dự báo >> Dự báo theo tuần cho từng SKU với thời hạn 12 tuần >> `reports/figures/07_forecast_top_skus.png`
+- Dự báo >> Dự báo theo tuần cho từng SKU với thời hạn 12 tuần >> Sẽ cập nhật sau
 
 **Dự báo**
-Phân tích dự báo được thực hiện trong file `notebooks/04_forecasting.ipynb`.
-
-Dữ liệu được tổng hợp theo tuần dựa trên chỉ tiêu `units_sold` cho từng SKU, tương ứng với 30 mô hình. Hai phương pháp được so sánh:
-- Mô hình cơ sở mùa vụ đơn giản, seasonal-naive
-- Prophet với tính mùa vụ theo năm và biến giải thích khuyến mãi
-
-Các mô hình được đánh giá trên tập kiểm tra giữ lại trong **12 tuần**, sử dụng hai chỉ số (MAE + WAPE)
-
-**Kết quả**
-WAPE trung bình đạt 13,1% đối với mô hình cơ sở và đạt 16,2% đối với Prophet. Mô hình cơ sở có độ chính xác cao hơn trên 18 trong tổng số 30 SKU. Do dữ liệu có tính mùa vụ theo năm mạnh, ổn định và gần như không có xu hướng tăng hoặc giảm dài hạn, phương pháp “sử dụng cùng tuần của năm trước” rất khó bị vượt qua. Việc bổ sung độ phức tạp của mô hình Prophet không mang lại hiệu quả tương xứng. Vì vậy, **mô hình seasonal-naive được lựa chọn làm mô hình dự báo chính thức**, cho thấy việc lựa chọn mô hình cần dựa trên kết quả kiểm định thực tế thay vì chỉ ưu tiên mô hình phức tạp hơn. Dự báo 12 tuần tiếp theo cho từng SKU được lưu tại `data/processed/weekly_forecast_next12w.csv`
+Sẽ cập nhật sau
 
 **6. Các Phát Hiện Cốt Lõi**
 - Sản lượng gần như đi ngang so với cùng kỳ năm trước sau khi loại trừ giai đoạn tăng trưởng ban đầu. Tổng sản lượng đạt **3,80 triệu đơn vị**. Sau khi các SKU lần lượt được đưa vào danh mục trong năm 2022, sản lượng theo tuần đạt đỉnh khoảng **39.000 đơn vị vào giữa năm 2023**, sau đó ổn định trong khoảng **30.000–35.000 đơn vị trong năm 2024**. Năm 2024 so với năm 2023 giảm **0,9%**, về cơ bản là đi ngang. Mức tăng **165% của năm 2023 so với năm 2022** chủ yếu là kết quả của việc năm 2022 chỉ có dữ liệu một phần và đang trong giai đoạn mở rộng danh mục, do đó không được xem là tăng trưởng thực tế.
@@ -226,7 +213,7 @@ WAPE trung bình đạt 13,1% đối với mô hình cơ sở và đạt 16,2% �
 Báo cáo Power BI gồm ba trang, được xây dựng dựa trên star schema (`fact_sales`, `dim_date`, `dim_product`, `dim_channel`, `dim_region`, `fact_forecast`):
 - Trang Tổng quan điều hành >> Thẻ KPI, xu hướng sản lượng theo tuần, tính mùa vụ theo tháng, cơ cấu sản lượng theo khu vực và kênh bán hàng
 - Trang Sản phẩm và khuyến mãi >> Mức đóng góp theo ngành hàng và thương hiệu, bảng xếp hạng SKU, phân tích Pareto, mức tăng sản lượng do khuyến mãi
-- Trang Khả năng cung ứng và dự báo >> Tỷ lệ hết hàng, ma trận nhiệt phân tích hết hàng, dự báo 12 tuần cho từng SKU
+- Trang Khả năng cung ứng >> Tỷ lệ hết hàng, ma trận nhiệt phân tích hết hàng
 
 Tài liệu hướng dẫn xây dựng: `powerbi/data_model.md`, `powerbi/power_query_steps.md`, `powerbi/measures.dax`, `powerbi/dashboard_layout.md`
 Ảnh chụp dashboard được lưu tại: `dashboard_screenshots/`
