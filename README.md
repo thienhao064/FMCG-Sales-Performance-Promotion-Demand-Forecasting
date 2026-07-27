@@ -17,10 +17,9 @@ English Version (Vietnameses below)
 --------------------------------------------------------
 **1. Project Overview**
 - This project analyses 190,757 daily sales records of a Fast-Moving Consumer Goods (FMCG) portfolio across three sales channels and three regions of Poland, covering 2022-01-21 to 2024-12-31. The goal is to turn raw transactional data into decisions a commercial / demand-planning team can act on:
- + Sales performance >> How revenue and volume trend across time, product hierarchy, channel and region.
- + Promotion effectiveness >> Whether promotions actually lift volume, and by how much.
- + Demand forecasting >> A weekly forecast to support inventory and supply planning.
-
++ Sales performance >> How revenue and volume trend across time, product hierarchy, channel and region.
++ Promotion effectiveness >> Whether promotions actually lift volume, and by how much.
++ Demand forecasting >> A weekly forecast to support inventory and supply planning.
 - Tools:
   + SQL (Data quality + Analysis query)
   + Python (Cleaning, EDA)
