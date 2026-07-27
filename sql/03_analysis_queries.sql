@@ -1,222 +1,168 @@
--- Q1. Weekly volume trend
-SELECT
-    DATE_TRUNC(date, WEEK(MONDAY)) AS week_start,
-    SUM(units_sold) AS units
-FROM fmcg.fmcg_sales
-WHERE units_sold >= 0 
-  AND stock_available >= 0 
+SET DATEFIRST 1;
+GO
+
+--01 Weekly volume trend
+SELECT  DATEADD(WEEK, DATEDIFF(WEEK, 0, date), 0) AS week_start,
+        SUM(units_sold) AS units
+FROM fmcg_sales
+WHERE units_sold >= 0
+  AND stock_available >= 0
   AND delivered_qty >= 0
-GROUP BY week_start
+GROUP BY DATEADD(WEEK, DATEDIFF(WEEK, 0, date), 0)
 ORDER BY week_start
 
-GO 
+GO
 
-/*
-Result
-
-*/
-
--- Q2. Year-over-year volume + growth
-WITH yr AS (
-  SELECT EXTRACT(YEAR FROM date) AS yr, 
-         SUM(units_sold) AS units
-  FROM fmcg.fmcg_sales
-  WHERE units_sold >= 0
-  GROUP BY yr
+-- 02 YoY volume + growth
+WITH yr AS
+(
+ SELECT YEAR(date) AS yr,
+        SUM(units_sold) AS units
+ FROM fmcg_sales
+ WHERE units_sold >= 0
+ GROUP BY YEAR(date)
 )
-SELECT yr, units,
-       ROUND(SAFE_DIVIDE(units - LAG(units) OVER (ORDER BY yr), LAG(units) OVER (ORDER BY yr)) * 100, 1) AS yoy_growth_pct
+
+SELECT  yr,
+        units,
+        ROUND(100 * (units - LAG(units) OVER(ORDER BY yr)) / NULLIF(LAG(units) OVER(ORDER BY yr),0), 1) AS yoy_growth_pct
 FROM yr
 ORDER BY yr
 
-GO 
+GO
 
-/*
-Result
-
-*/
-
--- Q3. Seasonality: month-of-year and day-of-week (avg units per row)
-SELECT EXTRACT(MONTH FROM date) AS month, 
-       ROUND(AVG(units_sold),2) AS avg_units
-FROM fmcg.fmcg_sales WHERE units_sold >= 0
-GROUP BY month 
+-- 03 Seasonality - Month
+SELECT  MONTH(date) AS month,
+        ROUND(AVG(CAST(units_sold AS FLOAT)), 2) AS avg_units
+FROM fmcg_sales
+WHERE units_sold >= 0
+GROUP BY MONTH(date)
 ORDER BY month
 
-GO 
+GO
 
-/*
-Result
-
-*/
-
-SELECT FORMAT_DATE('%A', date) AS day_name,
-       EXTRACT(DAYOFWEEK FROM date) AS dow,
-       ROUND(AVG(units_sold),2) AS avg_units
-FROM fmcg.fmcg_sales 
+-- 04 Seasonality - Day of Week
+SELECT  DATENAME(WEEKDAY,date) AS day_name,
+        DATEPART(WEEKDAY,date) AS dow,
+        ROUND(AVG(CAST(units_sold AS FLOAT)), 2) AS avg_units
+FROM fmcg_sales
 WHERE units_sold >= 0
-GROUP BY day_name, dow 
+GROUP BY DATENAME(WEEKDAY,date),
+         DATEPART(WEEKDAY,date)
 ORDER BY dow
 
-GO 
+GO
 
-/*
-Result
+-- 05 Category contribution
 
-*/
-
--- Q4. Product-hierarchy contribution (category share of volume)
-SELECT category,
-       SUM(units_sold) AS units,
-       ROUND(100 * SUM(units_sold) / SUM(SUM(units_sold)) OVER (), 1) AS pct_of_total
-FROM fmcg.fmcg_sales 
+SELECT  category,
+        SUM(units_sold) AS units,
+        ROUND(100 * SUM(units_sold) / SUM(SUM(units_sold)) OVER(), 1) AS pct_of_total
+FROM fmcg_sales
 WHERE units_sold >= 0
-GROUP BY category 
+GROUP BY category
 ORDER BY units DESC
 
-GO 
+GO
 
-/*
-Result
-
-*/
-
--- Pareto: SKUs ranked, cumulative share
-SELECT sku, 
-       units, 
-       ROUND(100*cum_units/tot,1) AS cum_pct
-FROM (
-  SELECT sku, 
-         SUM(units_sold) AS units,
-         SUM(SUM(units_sold)) OVER (ORDER BY SUM(units_sold) DESC) AS cum_units,
-         SUM(SUM(units_sold)) OVER () AS tot
-  FROM fmcg.fmcg_sales 
-  WHERE units_sold >= 0
-  GROUP BY sku
-)
+-- 06 Pareto SKU
+SELECT  sku,
+        units,
+        ROUND(100 * cum_units / tot, 1) AS cum_pct
+FROM
+(SELECT sku,
+        SUM(units_sold) AS units,
+        SUM(SUM(units_sold)) OVER (ORDER BY SUM(units_sold) DESC ROWS UNBOUNDED PRECEDING) AS cum_units,
+        SUM(SUM(units_sold)) OVER() AS tot
+    FROM fmcg_sales
+    WHERE units_sold >= 0
+    GROUP BY sku) t
 ORDER BY units DESC
 
-GO 
+GO
 
-/*
-Result
-
-*/
-
--- Q5. Channel & region mix
-SELECT channel, 
-       region,
-       SUM(units_sold) AS units,
-       ROUND(100 * SUM(units_sold) / SUM(SUM(units_sold)) OVER (), 1) AS pct_of_total
-FROM fmcg.fmcg_sales 
+-- 07 Channel & Region Mix
+SELECT  channel,
+        region,
+        SUM(units_sold) AS units,
+        ROUND(100 * SUM(units_sold) / SUM(SUM(units_sold)) OVER(), 1) AS pct_of_total
+FROM fmcg_sales
 WHERE units_sold >= 0
-GROUP BY channel, region
+GROUP BY channel,
+         region
 ORDER BY units DESC
 
-GO 
+GO
 
-/*
-Result
-
-*/
-
--- Q6. Promotion uplift on volume (overall + by category)
--- uplift% = (avg_promo - avg_base) / avg_base
-WITH g AS (
-  SELECT category, 
-         promotion_flag, 
-         AVG(units_sold) AS avg_units
-  FROM fmcg.fmcg_sales 
-  WHERE units_sold >= 0
-  GROUP BY category, promotion_flag
+-- 08 Promotion uplift
+WITH g AS
+(SELECT category,
+        promotion_flag,
+        AVG(CAST(units_sold AS FLOAT)) AS avg_units
+ FROM fmcg_sales
+ WHERE units_sold >= 0
+ GROUP BY category,
+          promotion_flag
 )
-SELECT
-  category,
-  MAX(IF(promotion_flag=0, avg_units, NULL)) AS avg_base,
-  MAX(IF(promotion_flag=1, avg_units, NULL)) AS avg_promo,
-  ROUND(100 * SAFE_DIVIDE(MAX(IF(promotion_flag=1, avg_units, NULL)) - MAX(IF(promotion_flag=0, avg_units, NULL)), MAX(IF(promotion_flag=0, avg_units, NULL))), 1) AS uplift_pct
+
+SELECT  category,
+        MAX(CASE WHEN promotion_flag=0 THEN avg_units END) AS avg_base,
+        MAX(CASE WHEN promotion_flag=1 THEN avg_units END) AS avg_promo,
+        ROUND(100 * (MAX(CASE WHEN promotion_flag = 1 THEN avg_units END) - MAX(CASE WHEN promotion_flag = 0 THEN avg_units END)) / NULLIF(MAX(CASE WHEN promotion_flag = 0 THEN avg_units END), 0), 1) AS uplift_pct
 FROM g
 GROUP BY category
 ORDER BY uplift_pct DESC
 
-GO 
+GO
 
-/*
-Result
+-- 09 Overall promotion share
+SELECT  ROUND(100 * AVG(CAST(promotion_flag AS FLOAT)), 1) AS pct_rows_on_promo
+FROM fmcg_sales
+WHERE units_sold >= 0
 
-*/
+GO
 
--- overall promo share of rows
-SELECT ROUND(100*AVG(promotion_flag),1) AS pct_rows_on_promo
-FROM fmcg.fmcg_sales 
+-- 10 Stock out analysis
+SELECT  ROUND(100 * AVG(CASE WHEN stock_available=0 THEN 1.0 ELSE 0 END), 1) AS stockout_rate_pct,
+        SUM(CASE WHEN stock_available=0 THEN 1 ELSE 0 END) AS stockout_rows
+FROM fmcg_sales
 WHERE units_sold >= 0;
 
-GO 
+GO
 
-/*
-Result
-
-*/
-
--- Q7. Stock-out analysis
--- stock-out proxy = stock_available = 0
-SELECT
-  ROUND(100*AVG(IF(stock_available=0,1,0)),1) AS stockout_rate_pct,
-  COUNTIF(stock_available=0) AS stockout_rows
-FROM fmcg.fmcg_sales 
+-- 11 Stock out by Channel & Region
+SELECT  channel,
+        region,
+        ROUND(100 * AVG(CASE WHEN stock_available=0 THEN 1 ELSE 0 END), 1) AS stockout_rate_pct
+FROM fmcg_sales
 WHERE units_sold >= 0
-
-GO 
-
-/*
-Result
-
-*/
-
-SELECT channel, 
-       region,
-       ROUND(100*AVG(IF(stock_available=0,1,0)),1) AS stockout_rate_pct
-FROM fmcg.fmcg_sales 
-WHERE units_sold >= 0
-GROUP BY channel, region
+GROUP BY channel,
+         region
 ORDER BY stockout_rate_pct DESC
 
-GO 
+GO
 
-/*
-Result
-
-*/
-
--- Monthly stock-out trend
-SELECT DATE_TRUNC(date, MONTH) AS month,
-       ROUND(100*AVG(IF(stock_available = 0,1,0)),1) AS stockout_rate_pct
-FROM fmcg.fmcg_sales 
+-- 12 Monthly stock out trend
+SELECT  DATEFROMPARTS(YEAR(date),MONTH(date),1) AS month,
+        ROUND(100 * AVG(CASE WHEN stock_available = 0 THEN 1 ELSE 0 END), 1) AS stockout_rate_pct
+FROM fmcg_sales
 WHERE units_sold >= 0
-GROUP BY month 
+GROUP BY DATEFROMPARTS(YEAR(date),MONTH(date), 1)
 ORDER BY month
 
-GO 
+GO
 
-/*
-Result
-
-*/
-
--- Q8. Top / bottom SKUs by volume
-SELECT  sku, 
-        brand, 
-        category, 
+-- 13 Top 10 SKU
+SELECT  TOP (10)
+        sku,
+        brand,
+        category,
         SUM(units_sold) AS units
-FROM fmcg.fmcg_sales 
+FROM fmcg_sales
 WHERE units_sold >= 0
-GROUP BY sku, brand, category
+GROUP BY sku,
+         brand,
+         category
 ORDER BY units DESC
-LIMIT 10;
 
-GO 
-
-/*
-Result
-
-*/
+GO
