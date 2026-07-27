@@ -1,7 +1,7 @@
 SET DATEFIRST 1;
 GO
 
---01 Weekly volume trend
+--Query 1 Weekly volume trend
 SELECT  DATEADD(WEEK, DATEDIFF(WEEK, 0, date), 0) AS week_start,
         SUM(units_sold) AS units
 FROM fmcg_sales
@@ -13,7 +13,7 @@ ORDER BY week_start
 
 GO
 
--- 02 YoY volume + growth
+--Query 2 YoY volume + growth
 WITH yr AS
 (
  SELECT YEAR(date) AS yr,
@@ -31,7 +31,7 @@ ORDER BY yr
 
 GO
 
--- 03 Seasonality - Month
+--Query 3 Seasonality - Month
 SELECT  MONTH(date) AS month,
         ROUND(AVG(CAST(units_sold AS FLOAT)), 2) AS avg_units
 FROM fmcg_sales
@@ -41,7 +41,7 @@ ORDER BY month
 
 GO
 
--- 04 Seasonality - Day of Week
+--Query 4 Seasonality - Day of Week
 SELECT  DATENAME(WEEKDAY,date) AS day_name,
         DATEPART(WEEKDAY,date) AS dow,
         ROUND(AVG(CAST(units_sold AS FLOAT)), 2) AS avg_units
@@ -53,7 +53,7 @@ ORDER BY dow
 
 GO
 
--- 05 Category contribution
+--Query 5 Category contribution
 
 SELECT  category,
         SUM(units_sold) AS units,
@@ -65,7 +65,7 @@ ORDER BY units DESC
 
 GO
 
--- 06 Pareto SKU
+--Query 6 Pareto SKU
 SELECT  sku,
         units,
         ROUND(100 * cum_units / tot, 1) AS cum_pct
@@ -81,7 +81,7 @@ ORDER BY units DESC
 
 GO
 
--- 07 Channel & Region Mix
+--Query 7 Channel & Region Mix
 SELECT  channel,
         region,
         SUM(units_sold) AS units,
@@ -94,7 +94,7 @@ ORDER BY units DESC
 
 GO
 
--- 08 Promotion uplift
+--Query 8 Promotion uplift
 WITH g AS
 (SELECT category,
         promotion_flag,
@@ -115,14 +115,14 @@ ORDER BY uplift_pct DESC
 
 GO
 
--- 09 Overall promotion share
+--Query 9 Overall promotion share
 SELECT  ROUND(100 * AVG(CAST(promotion_flag AS FLOAT)), 1) AS pct_rows_on_promo
 FROM fmcg_sales
 WHERE units_sold >= 0
 
 GO
 
--- 10 Stock out analysis
+--Query 10 Stock out analysis
 SELECT  ROUND(100 * AVG(CASE WHEN stock_available=0 THEN 1.0 ELSE 0 END), 1) AS stockout_rate_pct,
         SUM(CASE WHEN stock_available=0 THEN 1 ELSE 0 END) AS stockout_rows
 FROM fmcg_sales
@@ -130,7 +130,7 @@ WHERE units_sold >= 0;
 
 GO
 
--- 11 Stock out by Channel & Region
+--Query 11 Stock out by Channel & Region
 SELECT  channel,
         region,
         ROUND(100 * AVG(CASE WHEN stock_available=0 THEN 1 ELSE 0 END), 1) AS stockout_rate_pct
@@ -142,7 +142,7 @@ ORDER BY stockout_rate_pct DESC
 
 GO
 
--- 12 Monthly stock out trend
+--Query 12 Monthly stock out trend
 SELECT  DATEFROMPARTS(YEAR(date),MONTH(date),1) AS month,
         ROUND(100 * AVG(CASE WHEN stock_available = 0 THEN 1 ELSE 0 END), 1) AS stockout_rate_pct
 FROM fmcg_sales
@@ -152,7 +152,7 @@ ORDER BY month
 
 GO
 
--- 13 Top 10 SKU
+--Query 13 Top 10 SKU
 SELECT  TOP (10)
         sku,
         brand,
