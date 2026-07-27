@@ -63,12 +63,12 @@ Three anomalies flagged `docs/data_quality_findings.md`:
 **5. Analysis**
 Full analysis in `sql/03_analysis_queries.sql`
 
-- Trend >> Weekly & YoY volume >> `reports/figures/01_weekly_volume.png`
-- Seasonality >> Month-of-year & day-of-week >> `reports/figures/02_seasonality.png`
-- Product hierarchy >> Category share, top brands, SKU Pareto >> `reports/figures/03_hierarchy.png`
-- Channel & region >> Volume mix >> `reports/figures/04_channel_region.png`
-- Promotion >> Uplift on volume, by category >> `reports/figures/05_promo_uplift.png`
-- Stock-out >> Rate by dimension & over time >> `reports/figures/06_stockout_trend.png`
+- Trend >> Weekly & YoY volume >> `dashboard_screenshots/reports/figures/01_weekly_volume.png`
+- Seasonality >> Month-of-year & day-of-week >> `dashboard_screenshots/reports/figures/02_seasonality.png`
+- Product hierarchy >> Category share, top brands, SKU Pareto >> `dashboard_screenshots/reports/figures/03_hierarchy.png`
+- Channel & region >> Volume mix >> `dashboard_screenshots/reports/figures/04_channel_region.png`
+- Promotion >> Uplift on volume, by category >> `dashboard_screenshots/reports/figures/05_promo_uplift.png`
+- Stock-out >> Rate by dimension & over time >> `dashboard_screenshots/reports/figures/06_stockout_trend.png`
 - Forecasting >> Weekly per-SKU, 12-week horizon >> TBU
 
 **Forecasting** 
@@ -115,10 +115,9 @@ Screenshots: `dashboard_screenshots/`
 ```
 fmcg-sales-analytics/
 ├── README.md
-├── .gitignore
 ├── data/
-│   ├── raw/
-│   └── processed/
+│   ├── raw.csv
+│   └── processed.csv
 ├── sql/
 │   ├── 01_data_quality_checks.sql
 │   ├── 02_analysis_queries.sql
@@ -130,6 +129,9 @@ fmcg-sales-analytics/
 │   └── 04_forecasting.ipynb
 ├── powerbi/
 ├── dashboard_screenshots/
+│   ├── pic/
+│   ├── reports/
+│   │   ├── figures/
 ├── presentation/
 └── docs/
     ├── data_dictionary.md
@@ -188,12 +190,12 @@ Ba bất thường được ghi nhận trong `docs/data_quality_findings.md`:
 
 **5. Phân Tích**
 Toàn bộ phân tích được thực hiện trong file `sql/03_analysis_queries.sql`.
-- Xu hướng >> Sản lượng theo tuần và tăng trưởng cùng kỳ năm trước >> `reports/figures/01_weekly_volume.png`
-- Tính mùa vụ >> Phân tích theo tháng trong năm và ngày trong tuần >> `reports/figures/02_seasonality.png`
-- Phân cấp sản phẩm >> Tỷ trọng ngành hàng, thương hiệu hàng đầu và phân tích Pareto theo SKU >> `reports/figures/03_hierarchy.png`
-- Kênh bán hàng và khu vực >> Cơ cấu sản lượng >> `reports/figures/04_channel_region.png`
-- Khuyến mãi >> Mức tăng sản lượng do khuyến mãi theo từng ngành hàng >> `reports/figures/05_promo_uplift.png`
-- Hết hàng >> Tỷ lệ hết hàng theo từng chiều dữ liệu và theo thời gian >> `reports/figures/06_stockout_trend.png`
+- Xu hướng >> Sản lượng theo tuần và tăng trưởng cùng kỳ năm trước >> `dashboard_screenshots/reports/figures/01_weekly_volume.png`
+- Tính mùa vụ >> Phân tích theo tháng trong năm và ngày trong tuần >> `dashboard_screenshots/reports/figures/02_seasonality.png`
+- Phân cấp sản phẩm >> Tỷ trọng ngành hàng, thương hiệu hàng đầu và phân tích Pareto theo SKU >> `dashboard_screenshots/reports/figures/03_hierarchy.png`
+- Kênh bán hàng và khu vực >> Cơ cấu sản lượng >> `dashboard_screenshots/reports/figures/04_channel_region.png`
+- Khuyến mãi >> Mức tăng sản lượng do khuyến mãi theo từng ngành hàng >> `dashboard_screenshots/reports/figures/05_promo_uplift.png`
+- Hết hàng >> Tỷ lệ hết hàng theo từng chiều dữ liệu và theo thời gian >> `dashboard_screenshots/reports/figures/06_stockout_trend.png`
 - Dự báo >> Dự báo theo tuần cho từng SKU với thời hạn 12 tuần >> Sẽ cập nhật sau
 
 **Dự báo**
@@ -241,10 +243,9 @@ Tài liệu hướng dẫn xây dựng: `powerbi/data_model.md`, `powerbi/power_
 ```
 fmcg-sales-analytics/
 ├── README.md
-├── .gitignore
 ├── data/
-│   ├── raw/
-│   └── processed/
+│   ├── raw.csv
+│   └── processed.csv
 ├── sql/
 │   ├── 01_data_quality_checks.sql
 │   ├── 02_analysis_queries.sql
@@ -256,6 +257,9 @@ fmcg-sales-analytics/
 │   └── 04_forecasting.ipynb
 ├── powerbi/
 ├── dashboard_screenshots/
+│   ├── pic/
+│   ├── reports/
+│   │   ├── figures/
 ├── presentation/
 └── docs/
     ├── data_dictionary.md
