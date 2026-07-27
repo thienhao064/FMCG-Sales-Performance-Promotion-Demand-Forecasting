@@ -69,7 +69,7 @@ Full analysis in `sql/03_analysis_queries.sql`
 - Channel & region >> Volume mix >> `dashboard_screenshots/reports/figures/04_channel_region.png`
 - Promotion >> Uplift on volume, by category >> `dashboard_screenshots/reports/figures/05_promo_uplift.png`
 - Stock-out >> Rate by dimension & over time >> `dashboard_screenshots/reports/figures/06_stockout_trend.png`
-- Forecasting >> Weekly per-SKU, 12-week horizon >> TBU
+- Forecasting >> TBU
 
 **6. Key Insight**
 - Volume is flat year-on-year once the ramp is excluded. Total = 3.80M units. After SKUs were onboarded through 2022, weekly volume peaked at ~39k (mid-2023) and settled into a 30–35k band in 2024; 2024 vs 2023 = −0.9% (essentially flat). (The +165% "2023 vs 2022" is an artifact of a partial/ramp-up 2022 and is not treated as growth.)
@@ -193,7 +193,7 @@ Toàn bộ phân tích được thực hiện trong file `sql/03_analysis_querie
 - Kênh bán hàng và khu vực >> Cơ cấu sản lượng >> `dashboard_screenshots/reports/figures/04_channel_region.png`
 - Khuyến mãi >> Mức tăng sản lượng do khuyến mãi theo từng ngành hàng >> `dashboard_screenshots/reports/figures/05_promo_uplift.png`
 - Hết hàng >> Tỷ lệ hết hàng theo từng chiều dữ liệu và theo thời gian >> `dashboard_screenshots/reports/figures/06_stockout_trend.png`
-- Dự báo >> Dự báo theo tuần cho từng SKU với thời hạn 12 tuần >> Sẽ cập nhật sau
+- Dự báo >> Sẽ cập nhật sau
 
 **6. Các Phát Hiện Cốt Lõi**
 - Sản lượng gần như đi ngang so với cùng kỳ năm trước sau khi loại trừ giai đoạn tăng trưởng ban đầu. Tổng sản lượng đạt **3,80 triệu đơn vị**. Sau khi các SKU lần lượt được đưa vào danh mục trong năm 2022, sản lượng theo tuần đạt đỉnh khoảng **39.000 đơn vị vào giữa năm 2023**, sau đó ổn định trong khoảng **30.000–35.000 đơn vị trong năm 2024**. Năm 2024 so với năm 2023 giảm **0,9%**, về cơ bản là đi ngang. Mức tăng **165% của năm 2023 so với năm 2022** chủ yếu là kết quả của việc năm 2022 chỉ có dữ liệu một phần và đang trong giai đoạn mở rộng danh mục, do đó không được xem là tăng trưởng thực tế.
