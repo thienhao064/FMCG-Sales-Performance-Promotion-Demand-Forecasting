@@ -7,7 +7,7 @@
 | # | Column | Type | Description | Observed values / notes |
 |---|--------|------|-------------|--------------------------|
 | 1 | `date` | date (YYYY-MM-DD) | Transaction/observation day | 2022-01-21 → 2024-12-31 |
-| 2 | `sku` | string | Stock Keeping Unit | e.g. `MI-006`, `MI-026`, `SN-030`. Prefix = category code (`MI`=Milk, `SN`=SnackBar, …) |
+| 2 | `sku` | string | Stock Keeping Unit | `MI-006`, `MI-026`, `SN-030`. Prefix = category code (`MI`=Milk, `SN`=SnackBar, …) |
 | 3 | `brand` | string | Brand name | `MiBrand1`, `MiBrand4`, `SnBrand2`. `<CatCode>Brand<n>`. |
 | 4 | `segment` | string | Sub-segment within a category | `Milk-Seg2`, `Milk-Seg3`, `SnackBar-Seg1`. |
 | 5 | `category` | string | Top product category | `Milk`, `SnackBar` |
