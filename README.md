@@ -123,7 +123,6 @@ fmcg-sales-analytics/
 │   ├── 01_data_profiling.ipynb
 │   ├── 02_cleaning.ipynb
 │   ├── 03_eda.ipynb
-│   └── 04_forecasting.ipynb
 ├── powerbi/
 ├── dashboard_screenshots/
 │   ├── pic/
@@ -248,7 +247,6 @@ fmcg-sales-analytics/
 │   ├── 01_data_profiling.ipynb
 │   ├── 02_cleaning.ipynb
 │   ├── 03_eda.ipynb
-│   └── 04_forecasting.ipynb
 ├── powerbi/
 ├── dashboard_screenshots/
 │   ├── pic/
