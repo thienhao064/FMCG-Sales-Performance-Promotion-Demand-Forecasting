@@ -25,6 +25,7 @@ English Version (Vietnamese below)
   + Python (Cleaning, EDA)
   + Power BI (Interactive Dashboard)
   + PowerPoint (Storytelling)
+- Database: SQL Server
 
 ## **2. Business Problem**
 A demand-planning and commercial analytics team at an FMCG company needs to answer:
@@ -150,6 +151,7 @@ Phiên bản Tiếng Việt
   + Python: Làm sạch dữ liệu, khám phá dữ liệu.
   + Power BI: Xây dựng dashboard tương tác.
   + PowerPoint: Trình bày kết quả phân tích.
+- Database: SQL Server
 
 ## **2. Bài Toán Kinh Doanh**
 Đội ngũ lập kế hoạch nhu cầu hoặc phân tích kinh doanh tại một công ty FMCG cần trả lời các câu hỏi sau:
