@@ -13,7 +13,7 @@
 10. Next Steps
 11. Repository Structure
 
-English Version (Vietnameses below)
+English Version (Vietnamese below)
 --------------------------------------------------------
 **1. Project Overview**
 - This project analyses 190,757 daily sales records of a Fast Moving Consumer Goods (FMCG) portfolio across 3 sales channels and 3 regions of Poland, covering from 2022-01-21 to 2024-12-31. The goal is to turn raw transactional data into decisions a commercial and demand-planning team can act on:
