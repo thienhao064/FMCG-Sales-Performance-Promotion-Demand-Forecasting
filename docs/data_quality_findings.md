@@ -1,6 +1,6 @@
 # Data Quality Findings
 
-- Rows: 190,757 | Columns: 15
+- Rows: 190,757 | Columns: 14
 - Date range: 2022-01-21 -> 2024-12-31 (1076 distinct days)
 - Missing values: 0 total
 - Duplicate key rows: 0
