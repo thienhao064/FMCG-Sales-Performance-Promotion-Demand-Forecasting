@@ -212,7 +212,7 @@ Báo cáo Power BI gồm ba trang, được xây dựng dựa trên star schema 
 
 Ảnh chụp dashboard tại: `dashboard_screenshots/pic/` / File dashboard: `powerbi/`
 
-## **8. Khuyến Nghị**
+## **8. Đề Xuất**
 - Lập kế hoạch nguồn cung cho giai đoạn cao điểm mùa hè. Biến động mùa vụ khoảng 40% trong tháng 6 và tháng 7 là tín hiệu quan trọng nhất cho công tác lập kế hoạch. Doanh nghiệp nên tăng tồn kho trước thời điểm kết thúc quý 2. Yếu tố ngày trong tuần có thể được bỏ qua khi xây dựng chu kỳ bổ sung hàng.
 - Tập trung quy trình S&OP vào 23 SKUs chủ lực. Nhóm này đóng góp 80% tổng sản lượng, trong đó nên ưu tiên ngành hàng yogurt. Bảy SKUs có sản lượng thấp cần được rà soát để tinh gọn danh mục hoặc có chính sách hỗ trợ bán hàng phù hợp.
 - Xem khuyến mãi là công cụ thúc đẩy sản lượng, không nên áp dụng mặc định. Vì khuyến mãi làm sản lượng gần như tăng gấp đôi, doanh nghiệp cần bảo đảm đủ tồn kho trong các tuần triển khai khuyến mãi. Tuy nhiên, cần đánh giá hiệu quả đầu tư dựa trên dữ liệu chi phí và biên lợi nhuận trước khi tăng tỷ lệ khuyến mãi hiện tại là 14,9%.
