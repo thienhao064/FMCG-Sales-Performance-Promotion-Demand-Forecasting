@@ -82,7 +82,7 @@ Full analysis in `sql/03_analysis_queries.sql`
 
 ## **7. Dashboard**
 A 3-page Power BI report built on a star schema (`fact_sales`, `dim_date`, `dim_product`, `dim_channel`, `dim_region`):
-- Executive Overview >> KPI cards, weekly trend, monthly seasonality, region/channel balance.
+- Overview >> KPI cards, weekly trend, monthly seasonality, region/channel balance.
 - Product & Promotion >> Category/brand contribution, SKU league table, Pareto, promo uplift.
 - Availability & Forecast >> Stock out rate & heat-matrix.
 
