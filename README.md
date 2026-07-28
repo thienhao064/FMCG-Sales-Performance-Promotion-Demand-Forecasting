@@ -83,7 +83,7 @@ Full analysis in `sql/03_analysis_queries.sql`
 ## **7. Dashboard**
 A 3-page Power BI report built on a star schema (`fact_sales`, `dim_date`, `dim_product`, `dim_channel`, `dim_region`):
 - Overview >> KPI cards, weekly trend, monthly seasonality, region/channel balance.
-- Product & Promotion >> Category/brand contribution, SKU league table, Pareto, promo uplift.
+- Product & Promotion >> Category/brand contribution, SKU league table, promo uplift.
 - Availability & Forecast >> Stock out rate & heat-matrix.
 
 Screenshots: `dashboard_screenshots/pic/`/ File dashboard: `powerbi/`
@@ -207,7 +207,7 @@ Toàn bộ phân tích được thực hiện trong file `sql/03_analysis_querie
 
 Báo cáo Power BI gồm ba trang, được xây dựng dựa trên star schema (`fact_sales`, `dim_date`, `dim_product`, `dim_channel`, `dim_region`):
 - Trang tổng quan >> Thẻ KPI, xu hướng sản lượng theo tuần, tính mùa vụ theo tháng, cơ cấu sản lượng theo khu vực và kênh bán hàng.
-- Trang sản phẩm và khuyến mãi >> Mức đóng góp theo ngành hàng và thương hiệu, bảng xếp hạng SKU, phân tích Pareto, mức tăng sản lượng do khuyến mãi.
+- Trang sản phẩm và khuyến mãi >> Mức đóng góp theo ngành hàng và thương hiệu, bảng xếp hạng SKU, mức tăng sản lượng do khuyến mãi.
 - Trang khả năng cung ứng >> Tỷ lệ hết hàng, ma trận nhiệt phân tích hết hàng.
 
 Ảnh chụp dashboard tại: `dashboard_screenshots/pic/` / File dashboard: `powerbi/`
