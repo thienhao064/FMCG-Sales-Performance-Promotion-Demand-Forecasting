@@ -15,7 +15,7 @@
 | 7 | `region` | string | Region (Poland) | `PL-Central`, `PL-North`, `PL-South`. |
 | 8 | `pack_type` | string | Packaging format | `Single`, `Multipack`, `Carton`. |
 | 9 | `price_unit` | float | Unit price | Observed 1.50–8.97 |
-| 10 | `promotion_flag` | int (0/1) | 1 = promotion active that day for that row | Binary |
+| 10 | `promotion_flag` | int | 1 = promotion active that day for that row | Binary |
 | 11 | `delivery_days` | int | Delivery lead time | Observed 1–5. |
 | 12 | `stock_available` | int | Units available in stock | ≥ 0 |
 | 13 | `delivered_qty` | int | Units delivered/replenished | ≥ 0 |
