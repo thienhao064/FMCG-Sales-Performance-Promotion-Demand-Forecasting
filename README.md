@@ -86,8 +86,7 @@ A 3-page Power BI report built on a star schema (`fact_sales`, `dim_date`, `dim_
 - Product & Promotion >> Category/brand contribution, SKU league table, Pareto, promo uplift.
 - Availability & Forecast >> Stock out rate & heat-matrix.
 
-Screenshots: `dashboard_screenshots/pic/`
-File dashboard: `powerbi/`
+Screenshots: `dashboard_screenshots/pic/`/ File dashboard: `powerbi/`
 
 ## **8. Recommendations**
 - Plan supply to the summer peak. The ~40% Jun–Jul seasonal swing is the dominant planning signal; build inventory ahead of Q2-end. Day-of-week can be ignored in replenishment cadence.
@@ -212,8 +211,7 @@ Báo cáo Power BI gồm ba trang, được xây dựng dựa trên star schema 
 - Trang sản phẩm và khuyến mãi >> Mức đóng góp theo ngành hàng và thương hiệu, bảng xếp hạng SKU, phân tích Pareto, mức tăng sản lượng do khuyến mãi.
 - Trang khả năng cung ứng >> Tỷ lệ hết hàng, ma trận nhiệt phân tích hết hàng.
 
-Ảnh chụp dashboard tại: `dashboard_screenshots/pic/`
-File dashboard: `powerbi/`
+Ảnh chụp dashboard tại: `dashboard_screenshots/pic/` / File dashboard: `powerbi/`
 
 ## **8. Khuyến Nghị**
 - Lập kế hoạch nguồn cung cho giai đoạn cao điểm mùa hè. Biến động mùa vụ khoảng 40% trong tháng 6 và tháng 7 là tín hiệu quan trọng nhất cho công tác lập kế hoạch. Doanh nghiệp nên tăng tồn kho trước thời điểm kết thúc quý 2. Yếu tố ngày trong tuần có thể được bỏ qua khi xây dựng chu kỳ bổ sung hàng.
