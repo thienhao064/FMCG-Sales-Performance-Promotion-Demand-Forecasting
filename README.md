@@ -22,7 +22,7 @@ English Version (Vietnamese below)
   + Demand forecasting >> A weekly forecast to support inventory and supply planning.
 - Tools:
   + SQL (Data quality + Analysis query)
-  + Python (Cleaning, EDA)
+  + Python (Cleaning)
   + Power BI (Interactive Dashboard)
   + PowerPoint (Storytelling)
 - Database: SQL Server
@@ -147,7 +147,7 @@ Phiên bản Tiếng Việt
 
 - Công cụ sử dụng:
   + SQL: Kiểm tra chất lượng dữ liệu và truy vấn để phân tích.
-  + Python: Làm sạch dữ liệu, khám phá dữ liệu.
+  + Python: Làm sạch dữ liệu.
   + Power BI: Xây dựng dashboard tương tác.
   + PowerPoint: Trình bày kết quả phân tích.
 - Database: SQL Server
