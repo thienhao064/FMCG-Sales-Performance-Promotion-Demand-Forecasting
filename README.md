@@ -89,7 +89,7 @@ A 3-page Power BI report built on a star schema (`fact_sales`, `dim_date`, `dim_
 Screenshots: `dashboard_screenshots/pic/`/ File dashboard: `powerbi/`
 
 ## **8. Recommendations**
-- Plan supply to the summer peak. The ~40% Jun–Jul seasonal swing is the dominant planning signal; build inventory ahead of Q2-end. Day-of-week can be ignored in replenishment cadence.
+- Plan supply to the summer peak. The ~40% Jun–Jul seasonal swing is the dominant planning signal, build inventory ahead of Q2-end. Day-of-week can be ignored in replenishment cadence.
 - Concentrate S&OP on the core 23 SKUs (80% of volume), Yogurt first, and review the 7 tail SKUs for rationalisation or targeted support.
 - Treat promotions as a volume lever, not a default. Since promos ~double units, guarantee stock cover on promo weeks — but validate ROI with margin/cost data before increasing the 14.9% promo frequency.
 - Hold availability at ~2% and target the specific channel×region cells with the highest stock out rate rather than adding blanket safety stock.
@@ -122,7 +122,6 @@ fmcg-sales-analytics/
 ├── notebooks/
 │   ├── 01_data_profiling.ipynb
 │   ├── 02_cleaning.ipynb
-│   ├── 03_eda.ipynb
 ├── powerbi/
 ├── dashboard_screenshots/
 │   ├── pic/
@@ -246,7 +245,6 @@ fmcg-sales-analytics/
 ├── notebooks/
 │   ├── 01_data_profiling.ipynb
 │   ├── 02_cleaning.ipynb
-│   ├── 03_eda.ipynb
 ├── powerbi/
 ├── dashboard_screenshots/
 │   ├── pic/
